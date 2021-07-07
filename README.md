@@ -3,7 +3,7 @@ A simple sudoku solver
 
 ## What it does
 Takes an sudoku problem from user and solves it. <br />
-This is done using an efficient backtracking algorithm in C++.
+This is done using an efficient `backtracking` algorithm in `C++`.
 
 ### Input format :
 Input should contain 9 lines each representing one row of sudoku and each line should contain 9 characters , empty character should be represented by '.'
