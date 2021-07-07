@@ -8,6 +8,7 @@ using namespace std;
 #define vui vector<usi>
 #define vvc vector<vector<char>>
 #define vc vector<char>
+#define fast ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
 
 void printv(vvc v)
 {
@@ -48,16 +49,25 @@ bool fillSudoku(vvc &res,vui &rows,vui &cols,vui &tiles, int xpos=0,int ypos=0,i
         return false;
     }
     int t= (xpos/3)*3+(ypos/3);
+
+    //Fills sudoku as row-major order
     for(i=1;i<10;i++)
     {
+        //Checks if the number is safe to fill
         if(isNotSafe(i,t,xpos,ypos,rows,cols,tiles))
             continue;
+
+        //Fill the value and add that value to rows,cols and tiles
         rows[xpos].insert(i);
         cols[ypos].insert(i);
         tiles[t].insert(i);
         res[xpos][ypos]=(i+'0');
+
+        //If a solution is found end process of filling
         if(fillSudoku(res,rows,cols,tiles,nx,ny))
             return true;
+
+        //revert the filled value to not filled and remove it from rows,cols and tiles
         res[xpos][ypos]='.';
         rows[xpos].erase(i);
         cols[ypos].erase(i);
@@ -68,13 +78,17 @@ bool fillSudoku(vvc &res,vui &rows,vui &cols,vui &tiles, int xpos=0,int ypos=0,i
 
 int main()
 {
+    fast;
     int i,j;
     usi num;
     vc r(9,'.');
     vvc inp(9,r);
+
+    //Using rows,cols and tiles to keep track of numbers are already present in corresponding row ,column and tile
     vui rows(9,num);
     vui cols(9,num);
     vui tiles(9,num);
+
     int tile;
     string s;
     cout<<"Enter your input : \n";
@@ -94,8 +108,11 @@ int main()
             tiles[tile].insert(s[j]-'0');
         }
     }
+
+    //Outputs solution
     if(!fillSudoku(inp,rows,cols,tiles))
         cout<<"Your input has no solution\n";
     printv(inp);
+    
     return 0;
 }
