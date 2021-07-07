@@ -25,7 +25,7 @@ Note : input should contain 9lines each representing one row of sudoku ,each lin
 ```
 Ouput : 
 ```
-Solved!!
+Solved!
 5 1 9 7 4 8 6 3 2 
 7 8 3 6 5 2 4 1 9 
 4 2 6 1 3 9 8 7 5 
